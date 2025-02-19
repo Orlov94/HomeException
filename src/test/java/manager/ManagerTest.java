@@ -72,7 +72,7 @@ class ManagerTest {
     @Description("Удаление по id которого нет в списке")
     void case4() {
         manager.addNew(book2);
-        manager.addNew(smartphone1);
+        manager.addNew(smartphone4);
         manager.addNew(book3);
         manager.addNew(book1);
 
@@ -83,7 +83,32 @@ class ManagerTest {
 
     }
 
+    @Test
+    @Description("Добавить все и удалить 7")
+    void case5() {
+        manager.addNew(book1);
+        manager.addNew(book2);
+        manager.addNew(book3);
+        manager.addNew(book4);
+        manager.addNew(smartphone1);
+        manager.addNew(smartphone2);
+        manager.addNew(smartphone3);
+        manager.addNew(smartphone4);
 
+        manager.delete(101);
+        manager.delete(102);
+        manager.delete(103);
+        manager.delete(104);
+        manager.delete(205);
+        manager.delete(345);
+        manager.delete(428);
+
+        Product[] actual = manager.searchProduct();
+        Product[] expected = {smartphone4};
+
+        assertArrayEquals(actual, expected);
+
+    }
 
 }
 
